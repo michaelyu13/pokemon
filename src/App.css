@@ -1,3 +1,39 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.bug {
+    @apply bg-lime-500;
+}
+
+.electric {
+    @apply bg-yellow-300;
+}
+
+.fire {
+    @apply bg-orange-400;
+}
+
+.flying {
+    @apply bg-purple-400;
+}
+
+.grass {
+    @apply bg-green-500;
+}
+
+.ground {
+    @apply bg-yellow-500;
+}
+
+.normal {
+    @apply bg-stone-400;
+}
+
+.poison {
+    @apply bg-pink-400;
+}
+
+.water {
+    @apply bg-blue-400;
+}
