@@ -8,6 +8,7 @@ const POKEMON_API_URL = 'https://pokeapi.co/api/v2/pokemon?limit=30';
 
 const App = () => {
     const [pokemonData, setPokemonData] = useState([]);
+    const [searchInput, setSearchInput] = useState('');
     const sideEffectRanOnceAfterInitialRender = useRef(false);
 
     useEffect(() => {
@@ -46,8 +47,12 @@ const App = () => {
                 <h1 className="my-8 text-center text-6xl">Pokémon</h1>
             </header>
             <main className="mx-auto max-w-7xl">
-                <PokemonFilter pokemonData={pokemonData} setPokemonData={setPokemonData} />
-                <PokemonList pokemonData={pokemonData} />
+                <PokemonFilter
+                    pokemonData={pokemonData}
+                    setPokemonData={setPokemonData}
+                    setSearchInput={setSearchInput}
+                />
+                <PokemonList pokemonData={pokemonData} searchInput={searchInput} />
             </main>
         </>
     );
