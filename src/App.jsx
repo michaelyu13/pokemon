@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
-import PokemonList from './Components/PokemonList';
+import PokemonFilter from './components/FilterAndSort/PokemonFilter';
+import PokemonList from './components/PokemonList';
 import axios from 'axios';
 import './App.css';
 
@@ -29,19 +30,26 @@ const App = () => {
         response.map(async (pokemon) => {
             const result = await axios.get(pokemon.url);
 
-            setPokemonData((data) => {
+            const data = (data) => {
                 data = [...data, result.data];
-                data.sort((a, b) => (a.id > b.id ? 1 : -1));
+                data.sort((a, b) => a.id - b.id);
                 return data;
-            });
+            };
+
+            setPokemonData(data);
         });
     };
 
     return (
-        <main className="mx-auto max-w-7xl">
-            <h1 className="my-8 text-center text-6xl">Pokémon</h1>
-            <PokemonList pokemonData={pokemonData} />
-        </main>
+        <>
+            <header>
+                <h1 className="my-8 text-center text-6xl">Pokémon</h1>
+            </header>
+            <main className="mx-auto max-w-7xl">
+                <PokemonFilter pokemonData={pokemonData} setPokemonData={setPokemonData} />
+                <PokemonList pokemonData={pokemonData} />
+            </main>
+        </>
     );
 };
 
