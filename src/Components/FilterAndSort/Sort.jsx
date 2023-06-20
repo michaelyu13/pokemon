@@ -1,6 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { PokemonContext } from '../../App';
 
-const Sort = ({ pokemonData, setPokemonData }) => {
+const Sort = () => {
+    const { pokemonData, setPokemonData } = useContext(PokemonContext);
+
     const [sortOrder, setSortOrder] = useState('asc');
 
     useEffect(() => {

@@ -1,10 +1,12 @@
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import PokemonFilter from './components/FilterAndSort/PokemonFilter';
 import PokemonList from './components/PokemonList';
 import axios from 'axios';
 import './App.css';
 
 const POKEMON_API_URL = 'https://pokeapi.co/api/v2/pokemon?limit=30';
+
+export const PokemonContext = React.createContext();
 
 const App = () => {
     const [pokemonData, setPokemonData] = useState([]);
@@ -41,18 +43,23 @@ const App = () => {
         });
     };
 
+    const PokemonContextValue = {
+        pokemonData,
+        searchInput,
+        setPokemonData,
+        setSearchInput,
+    };
+
     return (
         <>
             <header>
                 <h1 className="my-8 text-center text-6xl">Pokémon</h1>
             </header>
             <main className="mx-auto max-w-7xl">
-                <PokemonFilter
-                    pokemonData={pokemonData}
-                    setPokemonData={setPokemonData}
-                    setSearchInput={setSearchInput}
-                />
-                <PokemonList pokemonData={pokemonData} searchInput={searchInput} />
+                <PokemonContext.Provider value={PokemonContextValue}>
+                    <PokemonFilter />
+                    <PokemonList />
+                </PokemonContext.Provider>
             </main>
         </>
     );

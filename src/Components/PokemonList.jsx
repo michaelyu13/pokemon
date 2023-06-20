@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Pokemon from './Pokemon';
+import { PokemonContext } from '../App';
 
-const PokemonList = ({ pokemonData, searchInput }) => {
+const PokemonList = () => {
+    const { pokemonData, searchInput } = useContext(PokemonContext);
+
     return (
         <section className="grid grid-cols-2 gap-4 px-4 pb-8 text-center md:grid-cols-3 lg:grid-cols-6">
             {pokemonData

@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { PokemonContext } from '../../App';
 
-const Search = ({ setSearchInput }) => {
+const Search = () => {
+    const { setSearchInput } = useContext(PokemonContext);
+
     const handleSearch = (e) => {
         setSearchInput(e.target.value);
     };
