@@ -25,8 +25,10 @@ const Sort = ({ pokemonData, setPokemonData }) => {
 
     return (
         <div>
-            <label htmlFor="sortBy">Sort by:</label>
-            <select id="sortBy" className="ml-2 border border-solid border-slate-400 p-1" onChange={handleSort}>
+            <label className="mr-2 font-bold" htmlFor="sort">
+                Sort by:
+            </label>
+            <select className="border-styles h-8 p-1" onChange={handleSort} name="sort" id="sort">
                 <option value="id-asc">ID (Asc)</option>
                 <option value="id-desc">ID (Desc)</option>
                 <option value="name-asc">Name (Asc)</option>

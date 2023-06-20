@@ -1,12 +1,18 @@
 import React from 'react';
+import Filter from './Filter';
 import Search from './Search';
 import Sort from './Sort';
 
 const PokemonFilter = ({ pokemonData, setPokemonData, setSearchInput }) => {
     return (
-        <section className="mx-4 mb-4 flex justify-between border border-solid border-slate-400 bg-slate-50 p-4 text-right">
-            <Search setSearchInput={setSearchInput} />
-            <Sort pokemonData={pokemonData} setPokemonData={setPokemonData} />
+        <section className="border-styles mx-4 mb-4 bg-slate-50 p-4">
+            <div className="mb-4 flex flex-col gap-4 md:flex-row md:justify-between">
+                <Search setSearchInput={setSearchInput} />
+                <Sort pokemonData={pokemonData} setPokemonData={setPokemonData} />
+            </div>
+            <div>
+                <Filter />
+            </div>
         </section>
     );
 };
