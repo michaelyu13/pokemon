@@ -13,6 +13,7 @@ export const PokemonContext = React.createContext();
 const App = () => {
     const [pokemonData, setPokemonData] = useState([]);
     const [searchInput, setSearchInput] = useState('');
+    const [selectedFilterByType, setSelectedFilterByType] = useState('');
     const [isLoading, setIsLoading] = useState(true);
     const sideEffectRanOnceAfterInitialRender = useRef(false);
 
@@ -50,8 +51,10 @@ const App = () => {
     const PokemonContextValue = {
         pokemonData,
         searchInput,
+        selectedFilterByType,
         setPokemonData,
         setSearchInput,
+        setSelectedFilterByType,
         isLoading,
     };
 

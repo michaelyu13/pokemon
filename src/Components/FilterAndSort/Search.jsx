@@ -30,6 +30,7 @@ const Search = () => {
                 onClick={handleClearSearch}
                 className={`${searchInput ? 'visible opacity-100' : 'invisible opacity-0'}
                 absolute right-0 top-1 mr-2 flex h-6 w-6 items-center justify-center rounded-full bg-slate-200 transition-colors transition-opacity duration-500 hover:bg-slate-400`}
+                title="Clear Search"
             >
                 <span className="mb-px text-white">&times;</span>
             </button>

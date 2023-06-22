@@ -29,7 +29,7 @@ const Sort = () => {
     return (
         <div>
             <label className="mr-2 font-bold" htmlFor="sort">
-                Sort by:
+                Sort By:
             </label>
             <select className="border-styles h-8 p-1" onChange={handleSort} name="sort" id="sort">
                 <option value="id-asc">ID (Asc)</option>
