@@ -31,42 +31,33 @@ const App = () => {
     }, [selectedFilterByType]);
 
     const fetchPokeApiData = async () => {
-        setPokemonData([]);
-        setIsLoading(true);
-
         try {
+            setPokemonData([]);
+            setIsLoading(true);
+
             const response = await axios.get(POKEAPI_URL);
 
-            if (selectedFilterByType) {
-                const pokemonData = await Promise.all(
-                    response.data.results.map(async (pokemon) => {
-                        const pokemonResponse = await axios.get(pokemon.url);
-
-                        return pokemonResponse.data;
-                    })
-                );
-                const filteredPokemon = pokemonData.filter((pokemon) => {
-                    return pokemon.types.some((type) => type.type.name === selectedFilterByType);
-                });
-
-                setPokemonData(filteredPokemon);
-            } else {
+            const pokemonData = await Promise.all(
                 response.data.results.map(async (pokemon) => {
                     const pokemonResponse = await axios.get(pokemon.url);
 
-                    const data = (data) => {
-                        data = [...data, pokemonResponse.data];
-                        data.sort((a, b) => a.id - b.id);
-                        return data;
-                    };
-                    setPokemonData(data);
+                    return pokemonResponse.data;
+                })
+            );
+
+            if (selectedFilterByType) {
+                const filteredPokemon = pokemonData.filter((pokemon) => {
+                    return pokemon.types.some((type) => type.type.name === selectedFilterByType);
                 });
+                setPokemonData(filteredPokemon);
+            } else {
+                setPokemonData(pokemonData);
             }
+
+            setIsLoading(false);
         } catch (error) {
             console.log(error);
         }
-
-        setIsLoading(false);
     };
 
     const PokemonContextValue = {
