@@ -7,7 +7,7 @@
 }
 
 .pokemon-type-styles {
-    @apply w-24 rounded text-center text-xl capitalize text-slate-50;
+    @apply w-24 rounded text-xl capitalize text-slate-50;
 }
 
 /* Pokemon Type Colours */

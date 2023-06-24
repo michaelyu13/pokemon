@@ -18,7 +18,7 @@ const Search = () => {
                 Search:
             </label>
             <input
-                className="border-styles h-8 w-64 pl-2 pr-10"
+                className="border-styles mx-auto block h-8 w-64 pl-2 pr-10 text-center md:inline md:text-left"
                 onChange={handleSearch}
                 type="text"
                 name="search"

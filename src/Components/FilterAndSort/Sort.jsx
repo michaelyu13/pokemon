@@ -28,10 +28,15 @@ const Sort = () => {
 
     return (
         <div>
-            <label className="mr-2 font-bold" htmlFor="sort">
+            <label className="mx-auto mr-2 block font-bold md:inline" htmlFor="sort">
                 Sort By:
             </label>
-            <select className="border-styles h-8 p-1" onChange={handleSort} name="sort" id="sort">
+            <select
+                className="border-styles h-8 p-1 text-center md:text-left"
+                onChange={handleSort}
+                name="sort"
+                id="sort"
+            >
                 <option value="id-asc">ID (Asc)</option>
                 <option value="id-desc">ID (Desc)</option>
                 <option value="name-asc">Name (Asc)</option>

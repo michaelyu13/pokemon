@@ -3,23 +3,23 @@ import Pokemon from './Pokemon';
 import { PokemonContext } from '../App';
 import PokemonTypeHeading from './PokemonTypeHeading';
 import PokemonSkeleton from './PokemonSkeleton';
-import NumberOfPokemon from './NumberOfPokemon';
-import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
+import InfoMessage from './InfoMessage';
+import Skeleton from 'react-loading-skeleton';
 
 const PokemonList = () => {
     const { pokemonData, searchInput, isLoading } = useContext(PokemonContext);
 
     return (
         <>
-            <h2 className="mt-8 text-center text-3xl leading-[52px]">
-                {isLoading ? 'Loading...' : <PokemonTypeHeading />}
-            </h2>
+            <section className="flex flex-col items-center">
+                <h2 className="mb-4 text-3xl leading-[52px]">{isLoading ? 'Loading...' : <PokemonTypeHeading />}</h2>
 
-            <h3 className="mx-auto mb-8 mt-4 max-w-sm px-4 text-center text-2xl">
-                {isLoading ? <Skeleton /> : <NumberOfPokemon />}
-            </h3>
+                <h3 className="mb-8 px-4 text-2xl">
+                    {isLoading ? <Skeleton width={280} height={32} /> : <InfoMessage />}
+                </h3>
+            </section>
 
-            <section className="grid grid-cols-2 gap-4 px-4 pb-8 text-center md:grid-cols-3 lg:grid-cols-6">
+            <section className="flex flex-wrap justify-center gap-4 px-4 pb-8">
                 {isLoading && <PokemonSkeleton skeletonItems={18} />}
 
                 {pokemonData

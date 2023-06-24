@@ -13,7 +13,7 @@ const Filter = () => {
     return (
         <>
             <span className="mb-2 block font-bold">Filter By Pokémon Type:</span>
-            <div className="flex flex-wrap gap-4 md:gap-x-8 lg:gap-x-7">
+            <div className="flex flex-wrap justify-center gap-4 md:gap-x-8 lg:gap-x-7">
                 <button className="pokemon-type-styles bg-blue-700" onClick={handleShowAllTypes}>
                     All Types
                 </button>

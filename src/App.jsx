@@ -80,11 +80,11 @@ const App = () => {
     };
 
     return (
-        <>
+        <div className="flex min-h-screen flex-col items-center">
             <header>
-                <h1 className="my-8 text-center text-6xl">Pokémon</h1>
+                <h1 className="my-8 text-6xl">Pokémon</h1>
             </header>
-            <main className="mx-auto max-w-7xl">
+            <main className="mx-auto max-w-7xl flex-1 text-center">
                 <SkeletonTheme baseColor="#ddd" highlightColor="#fff">
                     <PokemonContext.Provider value={PokemonContextValue}>
                         <PokemonFilter />
@@ -92,7 +92,16 @@ const App = () => {
                     </PokemonContext.Provider>
                 </SkeletonTheme>
             </main>
-        </>
+            <footer>
+                <p className="mx-4 mb-8 text-center">
+                    All Pokémon data and images displayed were fetched from the&nbsp;
+                    <a className="underline" href="https://pokeapi.co/" target="_blank">
+                        PokeAPI
+                    </a>
+                    .
+                </p>
+            </footer>
+        </div>
     );
 };
 

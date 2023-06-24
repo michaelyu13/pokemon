@@ -11,7 +11,7 @@ const PokemonTypeHeading = () => {
                 className={`${
                     selectedFilterByType === null
                         ? 'hidden'
-                        : `${selectedFilterByType} mx-1 inline-block rounded px-4 py-2 text-center text-3xl capitalize text-slate-50`
+                        : `${selectedFilterByType} mx-1 inline-block rounded px-4 py-2 text-3xl capitalize text-slate-50`
                 }`}
             >
                 {selectedFilterByType}
