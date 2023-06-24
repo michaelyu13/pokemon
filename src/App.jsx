@@ -2,50 +2,71 @@ import React, { useEffect, useRef, useState } from 'react';
 import PokemonFilter from './components/FilterAndSort/PokemonFilter';
 import PokemonList from './components/PokemonList';
 import axios from 'axios';
-import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
+import { SkeletonTheme } from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import './App.css';
 
-const POKEMON_API_URL = 'https://pokeapi.co/api/v2/pokemon?limit=30';
+const POKEAPI_URL = 'https://pokeapi.co/api/v2/pokemon?limit=151';
 
 export const PokemonContext = React.createContext();
 
 const App = () => {
     const [pokemonData, setPokemonData] = useState([]);
     const [searchInput, setSearchInput] = useState('');
-    const [selectedFilterByType, setSelectedFilterByType] = useState('');
+    const [selectedFilterByType, setSelectedFilterByType] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
     const sideEffectRanOnceAfterInitialRender = useRef(false);
 
     useEffect(() => {
         if (sideEffectRanOnceAfterInitialRender.current === false) {
-            getApiData();
+            fetchPokeApiData();
             sideEffectRanOnceAfterInitialRender.current = true;
         }
     }, []);
 
-    const getApiData = async () => {
+    useEffect(() => {
+        if (isLoading === true) return;
+
+        fetchPokeApiData();
+    }, [selectedFilterByType]);
+
+    const fetchPokeApiData = async () => {
+        setPokemonData([]);
+        setIsLoading(true);
+
         try {
-            const response = await axios.get(POKEMON_API_URL);
-            getPokemonData(response.data.results);
+            const response = await axios.get(POKEAPI_URL);
+
+            if (selectedFilterByType) {
+                const pokemonData = await Promise.all(
+                    response.data.results.map(async (pokemon) => {
+                        const pokemonResponse = await axios.get(pokemon.url);
+
+                        return pokemonResponse.data;
+                    })
+                );
+                const filteredPokemon = pokemonData.filter((pokemon) => {
+                    return pokemon.types.some((type) => type.type.name === selectedFilterByType);
+                });
+
+                setPokemonData(filteredPokemon);
+            } else {
+                response.data.results.map(async (pokemon) => {
+                    const pokemonResponse = await axios.get(pokemon.url);
+
+                    const data = (data) => {
+                        data = [...data, pokemonResponse.data];
+                        data.sort((a, b) => a.id - b.id);
+                        return data;
+                    };
+                    setPokemonData(data);
+                });
+            }
         } catch (error) {
             console.log(error);
         }
-    };
 
-    const getPokemonData = async (response) => {
-        response.map(async (pokemon) => {
-            const result = await axios.get(pokemon.url);
-
-            const data = (data) => {
-                data = [...data, result.data];
-                data.sort((a, b) => a.id - b.id);
-                return data;
-            };
-
-            setPokemonData(data);
-            setIsLoading(false);
-        });
+        setIsLoading(false);
     };
 
     const PokemonContextValue = {

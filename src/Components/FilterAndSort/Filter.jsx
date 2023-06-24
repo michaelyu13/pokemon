@@ -7,7 +7,7 @@ const Filter = () => {
     const { setSelectedFilterByType } = useContext(PokemonContext);
 
     const handleShowAllTypes = () => {
-        setSelectedFilterByType('');
+        setSelectedFilterByType(null);
     };
 
     return (
