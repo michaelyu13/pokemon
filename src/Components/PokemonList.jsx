@@ -25,7 +25,7 @@ const PokemonList = () => {
                 {pokemonData
                     .filter((pokemon) => pokemon.name.match(new RegExp(searchInput, 'i')))
                     .map((pokemon) => {
-                        return <Pokemon key={crypto.randomUUID()} pokemon={pokemon} />;
+                        return <Pokemon key={pokemon.id} pokemon={pokemon} />;
                     })}
             </section>
         </>

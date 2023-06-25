@@ -10,7 +10,7 @@ const Pokemon = ({ pokemon }) => {
 
             <div className="flex flex-col items-center space-y-2 ">
                 {pokemon.types.map((type) => {
-                    return <PokemonType key={crypto.randomUUID()} type={type} />;
+                    return <PokemonType key={`${pokemon.id}-${type.type.name}`} type={type} />;
                 })}
             </div>
         </div>
