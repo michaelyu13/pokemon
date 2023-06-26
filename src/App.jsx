@@ -6,14 +6,16 @@ import { SkeletonTheme } from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import './App.css';
 
-const POKEAPI_URL = 'https://pokeapi.co/api/v2/pokemon?limit=151';
-
 export const PokemonContext = React.createContext();
 
 const App = () => {
+    const POKEAPI_URL = 'https://pokeapi.co/api/v2/pokemon?limit=151';
+    const SORT_BY_ID_ASC_VALUE = 'id-asc';
+
     const [allPokemon, setAllPokemon] = useState([]);
     const [pokemonData, setPokemonData] = useState([]);
     const [searchInput, setSearchInput] = useState('');
+    const [sortOrder, setSortOrder] = useState(SORT_BY_ID_ASC_VALUE);
     const [selectedFilterByType, setSelectedFilterByType] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
     const sideEffectRanOnceAfterInitialRender = useRef(false);
@@ -56,17 +58,28 @@ const App = () => {
             });
 
             setPokemonData(filteredPokemon);
+
+            changeSortByValueBackToIdAscending();
         } catch (error) {
             console.log(error);
         }
     };
 
+    const changeSortByValueBackToIdAscending = () => {
+        const select = document.querySelector('#sort');
+        select.value = SORT_BY_ID_ASC_VALUE;
+
+        setSortOrder(select.value);
+    };
+
     const PokemonContextValue = {
         pokemonData,
         searchInput,
+        sortOrder,
         selectedFilterByType,
         setPokemonData,
         setSearchInput,
+        setSortOrder,
         setSelectedFilterByType,
         isLoading,
     };

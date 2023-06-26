@@ -2,23 +2,21 @@ import React, { useContext, useEffect, useState } from 'react';
 import { PokemonContext } from '../../App';
 
 const Sort = () => {
-    const { pokemonData, setPokemonData } = useContext(PokemonContext);
-
-    const [sortOrder, setSortOrder] = useState('asc');
+    const { pokemonData, sortOrder, setSortOrder, setPokemonData } = useContext(PokemonContext);
 
     useEffect(() => {
         if (sortOrder === 'id-asc') {
-            const idAscending = [...pokemonData].sort((a, b) => a.id - b.id);
-            setPokemonData(idAscending);
+            const idAscendingPokemon = [...pokemonData].sort((a, b) => a.id - b.id);
+            setPokemonData(idAscendingPokemon);
         } else if (sortOrder === 'id-desc') {
-            const idDescending = [...pokemonData].sort((a, b) => b.id - a.id);
-            setPokemonData(idDescending);
+            const idDescendingPokemon = [...pokemonData].sort((a, b) => b.id - a.id);
+            setPokemonData(idDescendingPokemon);
         } else if (sortOrder === 'name-asc') {
-            const nameAscending = [...pokemonData].sort((a, b) => (a.name > b.name ? 1 : -1));
-            setPokemonData(nameAscending);
+            const nameAscendingPokemon = [...pokemonData].sort((a, b) => (a.name > b.name ? 1 : -1));
+            setPokemonData(nameAscendingPokemon);
         } else if (sortOrder === 'name-desc') {
-            const nameDescending = [...pokemonData].sort((a, b) => (a.name > b.name ? -1 : 1));
-            setPokemonData(nameDescending);
+            const nameDescendingPokemon = [...pokemonData].sort((a, b) => (a.name > b.name ? -1 : 1));
+            setPokemonData(nameDescendingPokemon);
         }
     }, [sortOrder]);
 
