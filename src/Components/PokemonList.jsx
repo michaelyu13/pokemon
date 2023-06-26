@@ -5,6 +5,7 @@ import PokemonTypeHeading from './PokemonTypeHeading';
 import PokemonSkeleton from './PokemonSkeleton';
 import InfoMessage from './InfoMessage';
 import Skeleton from 'react-loading-skeleton';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const PokemonList = () => {
     const { pokemonData, searchInput, isLoading } = useContext(PokemonContext);
@@ -19,15 +20,17 @@ const PokemonList = () => {
                 </h3>
             </section>
 
-            <section className="flex flex-wrap justify-center gap-4 px-4 pb-8">
+            <motion.section layout className="flex flex-wrap justify-center gap-4 px-4 pb-8">
                 {isLoading && <PokemonSkeleton skeletonItems={18} />}
 
-                {pokemonData
-                    .filter((pokemon) => pokemon.name.match(new RegExp(searchInput, 'i')))
-                    .map((pokemon) => {
-                        return <Pokemon key={pokemon.id} pokemon={pokemon} />;
-                    })}
-            </section>
+                <AnimatePresence>
+                    {pokemonData
+                        .filter((pokemon) => pokemon.name.match(new RegExp(searchInput, 'i')))
+                        .map((pokemon) => {
+                            return <Pokemon key={pokemon.id} pokemon={pokemon} />;
+                        })}
+                </AnimatePresence>
+            </motion.section>
         </>
     );
 };
