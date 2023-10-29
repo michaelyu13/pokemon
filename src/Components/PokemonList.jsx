@@ -1,11 +1,11 @@
+import { AnimatePresence, motion } from 'framer-motion';
 import React, { useContext } from 'react';
-import Pokemon from './Pokemon';
-import { PokemonContext } from '../App';
-import PokemonTypeHeading from './PokemonTypeHeading';
-import PokemonSkeleton from './PokemonSkeleton';
-import InfoMessage from './InfoMessage';
 import Skeleton from 'react-loading-skeleton';
-import { motion, AnimatePresence } from 'framer-motion';
+import { PokemonContext } from '../App';
+import InfoMessage from './InfoMessage';
+import Pokemon from './Pokemon';
+import PokemonSkeleton from './PokemonSkeleton';
+import PokemonTypeHeading from './PokemonTypeHeading';
 
 const PokemonList = () => {
     const { pokemonData, searchInput, isLoading } = useContext(PokemonContext);

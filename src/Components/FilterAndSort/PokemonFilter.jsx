@@ -10,6 +10,7 @@ const PokemonFilter = () => {
                 <Search />
                 <Sort />
             </div>
+
             <div>
                 <Filter />
             </div>

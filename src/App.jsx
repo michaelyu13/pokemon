@@ -1,10 +1,12 @@
-import React, { useEffect, useRef, useState } from 'react';
-import PokemonFilter from './components/FilterAndSort/PokemonFilter';
-import PokemonList from './components/PokemonList';
 import axios from 'axios';
+import React, { useEffect, useRef, useState } from 'react';
 import { SkeletonTheme } from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import './App.css';
+import PokemonFilter from './components/FilterAndSort/PokemonFilter';
+import Footer from './components/Footer';
+import PokemonList from './components/PokemonList';
+import Header from './components/header';
 
 export const PokemonContext = React.createContext();
 
@@ -86,9 +88,8 @@ const App = () => {
 
     return (
         <div className="flex min-h-screen flex-col items-center">
-            <header>
-                <h1 className="my-8 text-6xl">Pokémon</h1>
-            </header>
+            <Header />
+
             <main className="mx-auto max-w-7xl flex-1 text-center">
                 <SkeletonTheme baseColor="#ddd" highlightColor="#fff">
                     <PokemonContext.Provider value={PokemonContextValue}>
@@ -97,15 +98,8 @@ const App = () => {
                     </PokemonContext.Provider>
                 </SkeletonTheme>
             </main>
-            <footer>
-                <p className="mx-4 mb-8 text-center">
-                    All Pokémon data and images displayed were fetched from the&nbsp;
-                    <a className="underline" href="https://pokeapi.co/" target="_blank">
-                        PokeAPI
-                    </a>
-                    .
-                </p>
-            </footer>
+
+            <Footer />
         </div>
     );
 };

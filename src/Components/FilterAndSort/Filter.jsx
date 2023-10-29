@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
-import FilterByPokemonType from './FilterByPokemonType.jsx';
 import { PokemonContext } from '../../App';
 import { POKEMON_TYPES } from '../../data/PokemonTypes.jsx';
+import FilterByPokemonType from './FilterByPokemonType.jsx';
 
 const Filter = () => {
     const { setSelectedFilterByType } = useContext(PokemonContext);

@@ -1,6 +1,6 @@
+import { motion } from 'framer-motion';
 import React from 'react';
 import PokemonType from './PokemonType';
-import { motion } from 'framer-motion';
 
 const Pokemon = ({ pokemon }) => {
     return (

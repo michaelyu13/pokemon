@@ -17,6 +17,7 @@ const Search = () => {
             <label className="mr-2 font-bold" htmlFor="search">
                 Search:
             </label>
+
             <input
                 className="border-styles mx-auto block h-8 w-64 pl-2 pr-10 text-center md:inline md:text-left"
                 onChange={handleSearch}
@@ -26,6 +27,7 @@ const Search = () => {
                 value={`${searchInput}`}
                 placeholder="Pokémon Name"
             />
+
             <button
                 onClick={handleClearSearch}
                 className={`${searchInput ? 'visible opacity-100' : 'invisible opacity-0'}
